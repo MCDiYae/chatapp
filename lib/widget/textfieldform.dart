@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TextFieldForm extends StatelessWidget {
-  TextFieldForm({
+ const TextFieldForm({
     super.key,
-    this.hinttexte,
+     required this.hinttexte,
   });
-  String? hinttexte;
+ final String hinttexte;
   @override
   Widget build(BuildContext context) {
     return TextField(
