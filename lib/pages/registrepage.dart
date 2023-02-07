@@ -55,11 +55,13 @@ class RegitrePage extends StatelessWidget {
               CostumBotton(
                 name: 'SignUP',
                 onTap: () async {
-                  var auth = FirebaseAuth.instance;
-                  UserCredential user =
-                      await auth.createUserWithEmailAndPassword(
-                          email: email!, password: pass!);
-                  print(user.user!.displayName);
+                  try {
+                    //refactor code (Ctrl+Shift+R).
+                    await registration();
+                  } on FirebaseAuthException catch (e) {
+                    showErrors(context, e.toString());
+                  }
+                  showErrors(context, 'Create with succes');
                 },
               ),
               const SizedBox(
@@ -79,5 +81,20 @@ class RegitrePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void showErrors(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      //show error to users
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  Future<void> registration() async {
+    var auth = FirebaseAuth.instance;
+    UserCredential user = await auth.createUserWithEmailAndPassword(
+        email: email!, password: pass!);
   }
 }
