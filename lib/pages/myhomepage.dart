@@ -1,3 +1,4 @@
+import 'package:chatapp/pages/registrepage.dart';
 import 'package:flutter/material.dart';
 
 import '../costum.dart';
@@ -43,11 +44,14 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(
               height: 64,
             ),
-            const CostumBotton(),
+            const CostumBotton(
+              name: 'LOGIN',
+            ),
             const SizedBox(
               height: 16,
             ),
             RichTextLogin(
+              destination: const RegitrePage(),
               keyy: keyLogin,
               value: valueLogin,
             ),
