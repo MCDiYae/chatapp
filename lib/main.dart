@@ -1,4 +1,5 @@
 import 'package:chatapp/pages/myhomepage.dart';
+import 'package:chatapp/pages/registrepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,10 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        MyHomePage.id: (context) => const MyHomePage(),
+        RegitrePage.id: (context) => const RegitrePage(),
+      },
       title: 'IG app',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const MyHomePage(),
+      initialRoute: 'HomePage',
     );
   }
 }

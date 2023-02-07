@@ -1,4 +1,3 @@
-import 'package:chatapp/pages/myhomepage.dart';
 import 'package:flutter/material.dart';
 
 import '../costum.dart';
@@ -9,7 +8,7 @@ import '../widget/texto.dart';
 
 class RegitrePage extends StatelessWidget {
   const RegitrePage({super.key});
-
+  static String id = 'RegistrePage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +47,14 @@ class RegitrePage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            RichTextLogin(
-              keyy: keySign,
-              value: valueSign,
-              destination: const MyHomePage(),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: RichTextLogin(
+                keyy: keySign,
+                value: valueSign,
+              ),
             ),
           ],
         ),
