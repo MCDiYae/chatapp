@@ -1,8 +1,15 @@
 import 'package:chatapp/pages/myhomepage.dart';
 import 'package:chatapp/pages/registrepage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -14,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        MyHomePage.id: (context) => const MyHomePage(),
-        RegitrePage.id: (context) => const RegitrePage(),
+        MyHomePage.id: (context) =>  const MyHomePage(),
+        RegitrePage.id: (context) =>  RegitrePage(),
       },
       title: 'IG app',
       debugShowCheckedModeBanner: false,

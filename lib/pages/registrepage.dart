@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../costum.dart';
@@ -7,8 +8,11 @@ import '../widget/textfieldform.dart';
 import '../widget/texto.dart';
 
 class RegitrePage extends StatelessWidget {
-  const RegitrePage({super.key});
+  RegitrePage({super.key});
   static String id = 'RegistrePage';
+  String? email;
+  String? pass;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +34,33 @@ class RegitrePage extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              const TextFieldForm(
+              TextFieldForm(
                 hinttexte: 'Email',
+                onchange: (data) {
+                  email = data;
+                },
               ),
               const SizedBox(
                 height: 16,
               ),
-              const TextFieldForm(
+              TextFieldForm(
                 hinttexte: 'Password',
+                onchange: (data) {
+                  pass = data;
+                },
               ),
               const SizedBox(
                 height: 64,
               ),
-              const CostumBotton(
+              CostumBotton(
                 name: 'SignUP',
+                onTap: () async {
+                  var auth = FirebaseAuth.instance;
+                  UserCredential user =
+                      await auth.createUserWithEmailAndPassword(
+                          email: email!, password: pass!);
+                  print(user.user!.displayName);
+                },
               ),
               const SizedBox(
                 height: 16,

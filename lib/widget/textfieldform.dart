@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TextFieldForm extends StatelessWidget {
- const TextFieldForm({
-    super.key,
-     required this.hinttexte,
+  TextFieldForm({super.key, 
+         required this.hinttexte,this.onchange
   });
  final String hinttexte;
+ Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onchange ,
       decoration: InputDecoration(
           hintText: hinttexte,
           hintStyle: const TextStyle(
