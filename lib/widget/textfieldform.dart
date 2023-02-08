@@ -8,7 +8,16 @@ class TextFieldForm extends StatelessWidget {
  Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter an email';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
       onChanged: onchange ,
       decoration: InputDecoration(
           hintText: hinttexte,

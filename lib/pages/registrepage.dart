@@ -12,6 +12,7 @@ class RegitrePage extends StatelessWidget {
   static String id = 'RegistrePage';
   String? email;
   String? pass;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,64 +20,69 @@ class RegitrePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 30),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset('assets/images/scholar.png'),
-              Texto(title: title1),
-              const SizedBox(
-                height: 64,
-              ),
-              Row(
-                children: [
-                  Texto(title: sign),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFieldForm(
-                hinttexte: 'Email',
-                onchange: (data) {
-                  email = data;
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFieldForm(
-                hinttexte: 'Password',
-                onchange: (data) {
-                  pass = data;
-                },
-              ),
-              const SizedBox(
-                height: 64,
-              ),
-              CostumBotton(
-                name: 'SignUP',
-                onTap: () async {
-                  try {
-                    //refactor code (Ctrl+Shift+R).
-                    await registration();
-                  } on FirebaseAuthException catch (e) {
-                    showErrors(context, e.toString());
-                  }
-                  showErrors(context, 'Create with succes');
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: RichTextLogin(
-                  keyy: keySign,
-                  value: valueSign,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Image.asset('assets/images/scholar.png'),
+                Texto(title: title1),
+                const SizedBox(
+                  height: 64,
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Texto(title: sign),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                TextFieldForm(
+                  hinttexte: 'Email',
+                  onchange: (data) {
+                    email = data;
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                TextFieldForm(
+                  hinttexte: 'Password',
+                  onchange: (data) {
+                    pass = data;
+                  },
+                ),
+                const SizedBox(
+                  height: 64,
+                ),
+                CostumBotton(
+                  name: 'SignUP',
+                  onTap: () async {
+                    if (_formKey.currentState!.validate()) {
+                      try {
+                        //refactor code (Ctrl+Shift+R).
+                        await registration();
+                      } on FirebaseAuthException catch (e) {
+                        showErrors(context, e.toString());
+                      }
+                      showErrors(context, 'Create with succes');
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: RichTextLogin(
+                    keyy: keySign,
+                    value: valueSign,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
