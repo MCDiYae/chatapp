@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class TextFieldForm extends StatelessWidget {
@@ -11,10 +12,6 @@ class TextFieldForm extends StatelessWidget {
         if (value!.isEmpty) {
           return 'Please enter a value';
         }
-        // if (!value.contains('@')) {
-        //   return 'Please enter a valid email';
-        // }
-        return null;
       },
       onChanged: onchange,
       decoration: InputDecoration(

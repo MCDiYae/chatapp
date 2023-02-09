@@ -1,3 +1,4 @@
+import 'package:chatapp/pages/chatpage.dart';
 import 'package:chatapp/pages/myhomepage.dart';
 import 'package:chatapp/pages/registrepage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        MyHomePage.id: (context) =>  const MyHomePage(),
-        RegitrePage.id: (context) =>  RegitrePage(),
+        MyHomePage.id: (context) => const MyHomePage(),
+        RegitrePage.id: (context) => const RegitrePage(),
+        ChatPage.id: (context) => ChatPage(),
       },
       title: 'IG app',
       debugShowCheckedModeBanner: false,

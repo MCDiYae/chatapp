@@ -9,11 +9,10 @@ import '../widget/richtexto.dart';
 import '../widget/snackbar.dart';
 import '../widget/textfieldform.dart';
 import '../widget/texto.dart';
+import 'chatpage.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key,
-  });
+  const MyHomePage({super.key});
   static String id = 'HomePage';
 
   @override
@@ -21,11 +20,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? email;
-  String? pass;
+  String? email, pass;
   bool isLoading = false;
 
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -35,8 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 30),
           child: SingleChildScrollView(
             child: Form(
+              key: formKey,
               child: Column(
-                key: _formKey,
                 children: [
                   Image.asset('assets/images/scholar.png'),
                   Texto(title: title1),
@@ -52,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 16,
                   ),
                   TextFieldForm(
-                    hinttexte: 'Email',
                     onchange: (data) {
                       email = data;
                     },
+                    hinttexte: 'Email',
                   ),
                   const SizedBox(
                     height: 16,
@@ -72,15 +70,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   CostumBotton(
                     name: 'LOGIN',
                     onTap: () async {
-                      if (_formKey.currentState!.validate()) {
+                      if (formKey.currentState!.validate()) {
                         isLoading = true;
                         setState(() {}); // change UI
                         try {
                           //refactor code (Ctrl+Shift+R).
                           await loginUser();
+                          // ignore: use_build_context_synchronously
                           showErrors(context, 'succes');
-                          //apres l'enregistrement avec succes on passe a page chat
-                          //: ..
+                          Navigator.pushNamed(context, ChatPage.id);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             showErrors(
@@ -89,10 +87,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             showErrors(context,
                                 'Wrong password provided for that user.');
                           }
+                        } catch (e) {
+                          print(e);
+                          showErrors(context, 'error');
                         }
                         isLoading = false;
                         setState(() {});
-                      }
+                      } else {}
                     },
                   ),
                   const SizedBox(
@@ -117,8 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> loginUser() async {
-    var auth = FirebaseAuth.instance;
-    UserCredential user =
-        await auth.signInWithEmailAndPassword(email: email!, password: pass!);
+    UserCredential user = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: pass!);
   }
 }

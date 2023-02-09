@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CostumBotton extends StatelessWidget {
-   CostumBotton({
-    super.key, this.onTap,
+  CostumBotton({
+    super.key,
+    this.onTap,
     required this.name,
   });
   final String name;
