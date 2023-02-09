@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chatapp/pages/registrepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         try {
                           //refactor code (Ctrl+Shift+R).
                           await loginUser();
-                          // ignore: use_build_context_synchronously
                           showErrors(context, 'succes');
                           Navigator.pushNamed(context, ChatPage.id);
                         } on FirebaseAuthException catch (e) {
@@ -87,10 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             showErrors(context,
                                 'Wrong password provided for that user.');
                           }
-                        } catch (e) {
-                          print(e);
-                          showErrors(context, 'error');
-                        }
+                        } 
                         isLoading = false;
                         setState(() {});
                       } else {}
