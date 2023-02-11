@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../widget/chatmessage.dart';
+
 class ChatPage extends StatelessWidget {
   static String id = 'chatPage';
 
@@ -11,6 +13,17 @@ class ChatPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('CHATT'),
         centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Chatmessage();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
