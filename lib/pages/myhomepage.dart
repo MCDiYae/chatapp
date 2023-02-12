@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             showErrors(context,
                                 'Wrong password provided for that user.');
                           }
-                        } 
+                        }
                         isLoading = false;
                         setState(() {});
                       } else {}
