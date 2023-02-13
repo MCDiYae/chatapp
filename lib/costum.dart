@@ -13,4 +13,6 @@ String keyLogin = 'Don\'t have an account?';
 String valueLogin = ' Sign UP';
 String keySign = 'I have an account! ';
 String valueSign = 'LOGIN';
-const keyMessage = 'message';// collection message
+const keyColMessage = 'message'; // collection message
+const keyMessage = 'textmessage';// collection message
+
