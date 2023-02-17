@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 import '../costum.dart';
 
 class Chatmessage extends StatelessWidget {
-  const Chatmessage({
-    super.key,
-    required this.message
-  });
-  final Message message;
+  const Chatmessage({super.key, required this.messag});
+  final Message messag;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class Chatmessage extends StatelessWidget {
           color: pPremuimCl,
         ),
         child: Text(
-          message.textmessage,
+          messag.message,
           style: TextStyle(
             color: Colors.white,
           ),

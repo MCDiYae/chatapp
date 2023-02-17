@@ -14,5 +14,5 @@ String valueLogin = ' Sign UP';
 String keySign = 'I have an account! ';
 String valueSign = 'LOGIN';
 const keyColMessage = 'message'; // collection message
-const keyMessage = 'textmessage';// collection message
+const keyMessage = 'textmessage';
 

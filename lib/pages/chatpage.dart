@@ -11,15 +11,17 @@ class ChatPage extends StatelessWidget {
   static String id = 'chatPage';
   final TextEditingController _controller = TextEditingController();
 
-  CollectionReference message =
+  CollectionReference messagi =
       FirebaseFirestore.instance.collection(keyColMessage);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
-        future: message.get(), // read
+        future: messagi.get(), // read
         builder: (context, snapshot) {
-         
+          if (snapshot.hasError) {
+            return Text("Something went wrong");
+          }
 
           if (snapshot.hasData) {
             List<Message> messagelist = [];
@@ -37,7 +39,9 @@ class ChatPage extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: messagelist.length,
                       itemBuilder: (context, index) {
-                        return Chatmessage(message:messagelist[index] ,);
+                        return Chatmessage(
+                          messag: messagelist[index],
+                        );
                       },
                     ),
                   ),
@@ -46,7 +50,7 @@ class ChatPage extends StatelessWidget {
                     child: TextField(
                       controller: _controller,
                       onSubmitted: (data) {
-                        message.add({
+                        messagi.add({
                           'message': data,
                         });
                         _controller.clear();
@@ -61,9 +65,8 @@ class ChatPage extends StatelessWidget {
                 ],
               ),
             );
-          } else {
-            return Text('loading');
           }
+          return Text('loading11112');
         });
   }
 }
