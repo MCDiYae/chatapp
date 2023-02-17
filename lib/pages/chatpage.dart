@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../costum.dart';
 import '../models/message.dart';
 import '../widget/chatmessage.dart';
@@ -10,14 +9,15 @@ import '../widget/chatmessage.dart';
 class ChatPage extends StatelessWidget {
   static String id = 'chatPage';
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   CollectionReference messagi =
       FirebaseFirestore.instance.collection(keyColMessage);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-        future: messagi.get(), // read
+    return StreamBuilder<QuerySnapshot>(
+        stream: messagi.orderBy(mesgTime, descending: true).snapshots(), // read
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("Something went wrong");
@@ -36,13 +36,22 @@ class ChatPage extends StatelessWidget {
               body: Column(
                 children: [
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: messagelist.length,
-                      itemBuilder: (context, index) {
-                        return Chatmessage(
-                          messag: messagelist[index],
-                        );
-                      },
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            reverse: true,
+                            shrinkWrap: true,
+                            itemCount: messagelist.length,
+                            itemBuilder: (context, index) {
+                              return Chatmessage(
+                                messag: messagelist[index],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -52,14 +61,22 @@ class ChatPage extends StatelessWidget {
                       onSubmitted: (data) {
                         messagi.add({
                           'message': data,
+                          mesgTime: DateTime.now(),
                         });
                         _controller.clear();
+                        _scrollController.animateTo(
+                          0,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
                       },
                       decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                              borderSide: BorderSide(color: colorWrite)),
-                          suffixIcon: Icon(Icons.send)),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: BorderSide(color: colorWrite),
+                        ),
+                        suffixIcon: Icon(Icons.send),
+                      ),
                     ),
                   ),
                 ],

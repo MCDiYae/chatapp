@@ -15,4 +15,4 @@ String keySign = 'I have an account! ';
 String valueSign = 'LOGIN';
 const keyColMessage = 'message'; // collection message
 const keyMessage = 'textmessage';
-
+const mesgTime = 'mesgTime';
