@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           //refactor code (Ctrl+Shift+R).
                           await loginUser();
                           showErrors(context, 'succes');
-                          Navigator.pushNamed(context, ChatPage.id);
+                          Navigator.pushNamed(context, ChatPage.id,arguments: email);
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             showErrors(

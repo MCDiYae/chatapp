@@ -16,8 +16,13 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var email = ModalRoute.of(context)!.settings.arguments;
     return StreamBuilder<QuerySnapshot>(
-        stream: messagi.orderBy(mesgTime, descending: true).snapshots(), // read
+        stream: messagi
+            .orderBy(
+              mesgTime,
+            )
+            .snapshots(), // read
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text("Something went wrong");
@@ -41,7 +46,7 @@ class ChatPage extends StatelessWidget {
                       child: Column(
                         children: [
                           ListView.builder(
-                            reverse: true,
+                            //reverse: true,
                             shrinkWrap: true,
                             itemCount: messagelist.length,
                             itemBuilder: (context, index) {
@@ -60,12 +65,13 @@ class ChatPage extends StatelessWidget {
                       controller: _controller,
                       onSubmitted: (data) {
                         messagi.add({
-                          'message': data,
+                          keyColMessage: data,
                           mesgTime: DateTime.now(),
+                          'id': email,
                         });
                         _controller.clear();
                         _scrollController.animateTo(
-                          0,
+                          _scrollController.position.maxScrollExtent,
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeOut,
                         );
