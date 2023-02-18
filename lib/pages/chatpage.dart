@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../costum.dart';
 import '../models/message.dart';
 import '../widget/chatmessage.dart';
+import '../widget/chatmessagefr.dart';
 
 class ChatPage extends StatelessWidget {
   static String id = 'chatPage';
@@ -50,9 +51,13 @@ class ChatPage extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: messagelist.length,
                             itemBuilder: (context, index) {
-                              return Chatmessage(
-                                messag: messagelist[index],
-                              );
+                              return messagelist[index].id == email
+                                  ? Chatmessage(
+                                      messag: messagelist[index],
+                                    )
+                                  : ChatmessageFr(
+                                      messag: messagelist[index],
+                                    );
                             },
                           ),
                         ],
@@ -88,8 +93,9 @@ class ChatPage extends StatelessWidget {
                 ],
               ),
             );
+          } else {
+            return Text('Loading...');
           }
-          return Text('loading11112');
         });
   }
 }

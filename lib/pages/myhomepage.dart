@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 16,
                   ),
                   TextFieldForm(
+                    obscurText: true,
                     hinttexte: 'Password',
                     onchange: (data) {
                       pass = data;

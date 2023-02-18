@@ -1,16 +1,18 @@
-import 'package:chatapp/models/message.dart';
+
 import 'package:flutter/material.dart';
 
-import '../costum.dart';
 
-class Chatmessage extends StatelessWidget {
-  const Chatmessage({super.key, required this.messag});
+import '../costum.dart';
+import '../models/message.dart';
+
+class ChatmessageFr extends StatelessWidget {
+  const ChatmessageFr({super.key, required this.messag});
   final Message messag;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Container(
         padding: EdgeInsets.only(left: 8, top: 16, bottom: 16, right: 16),
         margin: EdgeInsets.all(8),
@@ -20,7 +22,7 @@ class Chatmessage extends StatelessWidget {
             topRight: Radius.circular(32),
             bottomRight: Radius.circular(32),
           ),
-          color: pPremuimCl,
+          color: pPremuimC3,
         ),
         child: Text(
           messag.message,

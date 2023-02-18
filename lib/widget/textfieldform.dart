@@ -1,13 +1,18 @@
-
 import 'package:flutter/material.dart';
 
 class TextFieldForm extends StatelessWidget {
-  TextFieldForm({super.key, required this.hinttexte, this.onchange});
+  TextFieldForm(
+      {super.key,
+      required this.hinttexte,
+      this.onchange,
+      this.obscurText = false});
   final String hinttexte;
   Function(String)? onchange;
+  bool? obscurText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscurText!,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Please enter a value';
