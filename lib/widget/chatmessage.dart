@@ -12,10 +12,10 @@ class Chatmessage extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.only(left: 8, top: 16, bottom: 16, right: 16),
-        margin: EdgeInsets.all(8),
+        padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16, right: 16),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
             bottomRight: Radius.circular(32),
@@ -24,7 +24,7 @@ class Chatmessage extends StatelessWidget {
         ),
         child: Text(
           messag.message,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),

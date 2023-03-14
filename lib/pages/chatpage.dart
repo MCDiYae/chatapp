@@ -26,7 +26,7 @@ class ChatPage extends StatelessWidget {
             .snapshots(), // read
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong");
+            return const Text("Something went wrong");
           }
 
           if (snapshot.hasData) {
@@ -86,7 +86,7 @@ class ChatPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                           borderSide: BorderSide(color: colorWrite),
                         ),
-                        suffixIcon: Icon(Icons.send),
+                        suffixIcon: const Icon(Icons.send),
                       ),
                     ),
                   ),
@@ -94,7 +94,7 @@ class ChatPage extends StatelessWidget {
               ),
             );
           } else {
-            return Text('Loading...');
+            return const Text('Loading...');
           }
         });
   }

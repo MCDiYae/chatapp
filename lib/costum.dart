@@ -8,7 +8,7 @@ String register = 'SignUP';
 Color colorWrite = Colors.white;
 Color pPremuimCl = const Color.fromARGB(204, 155, 155, 179);
 Color pPremuimC2 = const Color.fromARGB(204, 183, 83, 183);
-Color pPremuimC3 = Color.fromARGB(204, 59, 93, 64);
+Color pPremuimC3 = const Color.fromARGB(204, 59, 93, 64);
 
 
 String keyLogin = 'Don\'t have an account?';

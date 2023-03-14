@@ -1,4 +1,3 @@
-import '../costum.dart';
 
 class Message {
   final String message;
