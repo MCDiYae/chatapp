@@ -1,16 +1,3 @@
-# chatapp
+# Chatapp
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I developed a simple chat application using Flutter and Firebase technologies. The app uses Firebase Authentication to securely authenticate users and Firestore to store and retrieve chat messages in real-time. The code is written in Flutter, a popular cross-platform mobile development framework, making the application available on both Android and iOS platforms. This project showcases my skills in mobile app development and proficiency in working with Firebase services.
